@@ -115,7 +115,7 @@ async function handleChat(req, res) {
         model: MODEL,
         messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...messages],
         temperature: 0.7,
-        max_completion_tokens: 700
+        max_completion_tokens: 1600
       })
     });
     if (!upstream.ok) {
