@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: ariela-agente-virtual
+    runtime: node
+    plan: free
+    buildCommand: npm install --omit=dev
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: 22
+      - key: ARIELA_MODEL
+        value: openai/gpt-oss-20b
+      - key: GROQ_API_KEY
+        sync: false
+      - key: ARIELA_ACCESS_CODE
+        sync: false

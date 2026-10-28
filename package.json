@@ -1,0 +1,9 @@
+{
+  "name": "ariela-agente-virtual",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Prototipo web de ARIELA Agente Virtual con backend seguro preparado para IA",
+  "type": "module",
+  "scripts": { "start": "node server.js", "check": "node --check server.js" },
+  "engines": { "node": ">=20" }
+}
