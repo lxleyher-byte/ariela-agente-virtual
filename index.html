@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#10101a">
+<meta name="description" content="ARIELA Agente Virtual: un espacio para crear, aprender y avanzar.">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<title>ARIELA · Agente Virtual</title>
+<style>
+:root{color-scheme:dark;--bg:#0c0c14;--panel:#151522;--panel2:#1b1b2b;--line:#303044;--text:#f5f3ff;--muted:#aaa8c0;--pink:#ee83d2;--purple:#9c8cff;--mint:#93ead7;--warn:#eac08a;--danger:#ffaaa9}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -18%,#392047 0%,transparent 47%),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100dvh;display:flex;justify-content:center}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible{outline:2px solid var(--purple);outline-offset:2px}
+.app{width:100%;max-width:860px;min-height:100dvh;display:flex;flex-direction:column;padding:0 14px env(safe-area-inset-bottom)}
+.topbar{display:flex;align-items:center;gap:12px;padding:18px 4px 14px;border-bottom:1px solid #ffffff12}.logo{width:48px;height:48px;border-radius:16px;background:linear-gradient(135deg,#ed8ad0,#8a7dfb 75%);display:grid;place-items:center;box-shadow:0 8px 26px #aa69db30;flex:none}.logo svg{width:31px;height:31px}.brand{flex:1;min-width:0}.brand h1{font-size:18px;letter-spacing:.12em;margin:0;font-weight:760}.brand p{font-size:12px;color:var(--muted);margin:4px 0 0}.status{font-size:11px;border:1px solid #8ae4c344;background:#8ae4c30e;border-radius:99px;padding:7px 10px;color:#b7f3e5;white-space:nowrap}.status.demo{border-color:#eab16d55;background:#eab16d0e;color:#f1d1a4}.status.setup{border-color:#f59e0b66;background:#f59e0b11;color:#ffdb9f}
+.hero{padding:25px 4px 14px}.eyebrow{color:var(--pink);text-transform:uppercase;letter-spacing:.17em;font-size:10px;font-weight:750}.hero h2{font-size:clamp(26px,6vw,38px);line-height:1.12;letter-spacing:-.04em;margin:10px 0 9px}.hero h2 span{background:linear-gradient(90deg,#ffb4df,#b2a5ff);color:transparent;background-clip:text}.hero p{color:var(--muted);font-size:14px;line-height:1.55;margin:0;max-width:560px}
+.notice{margin:8px 0 12px;padding:11px 13px;border:1px solid #eab16d40;background:#eab16d0d;border-radius:13px;color:#ebd1ad;font-size:12px;line-height:1.5}.notice strong{color:#ffe2b8}.notice.connected{border-color:#8ae4c344;background:#8ae4c30e;color:#bdebe0}.notice.connected strong{color:#c7fff2}.notice.setup{border-color:#efba6b55;background:#efba6b0d;color:#f3d6a8}.notice.error{border-color:#ffaaa955;background:#ffaaa90a;color:#ffd3d2}
+.suggestions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:0 0 14px}.suggest{border:1px solid var(--line);background:#ffffff05;border-radius:14px;color:var(--text);padding:12px;text-align:left;min-height:68px;transition:background .15s,border-color .15s}.suggest:active{background:#9c8cff1b;border-color:#9c8cff88}.suggest .symbol{display:block;color:#c4aaff;font-size:17px;margin-bottom:5px}.suggest .label{font-size:12px;font-weight:650}
+.chat{background:#12121d;border:1px solid #ffffff12;border-radius:20px;flex:1;min-height:340px;display:flex;flex-direction:column;overflow:hidden;margin-bottom:12px}.chat-head{padding:12px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff10;color:#cbc8e0;font-size:12px}.tiny-logo{width:25px;height:25px;border-radius:9px;background:linear-gradient(135deg,#ed8ad0,#8a7dfb);display:inline-grid;place-items:center;margin-right:8px;font-size:13px;color:#fff}.head-left{display:flex;align-items:center}.head-actions{display:flex;gap:7px}.clear,.accessBtn{background:transparent;border:1px solid #ffffff20;color:#cbc8e0;border-radius:9px;padding:7px 10px;font-size:11px}.accessBtn{display:none}.accessBtn.visible{display:inline-block}
+.messages{padding:14px;display:flex;flex-direction:column;gap:12px;min-height:230px;max-height:46dvh;overflow-y:auto;flex:1;overscroll-behavior:contain}.msg{max-width:94%;padding:12px 13px;font-size:13px;line-height:1.58;white-space:pre-wrap;overflow-wrap:anywhere}.msg.assistant{align-self:flex-start;background:#222234;border:1px solid #ffffff09;border-radius:5px 15px 15px 15px;color:#f2efff}.msg.user{align-self:flex-end;background:linear-gradient(135deg,#6f60bc,#9d65a8);border-radius:15px 5px 15px 15px;color:white}.msg.noticeMsg{font-size:12px;color:#ffd3d2;background:#35222a}.typing{color:var(--muted);font-size:12px;padding:0 15px 9px;display:none}.composer{display:flex;gap:8px;padding:10px;border-top:1px solid #ffffff10;background:#171724}.composer input{min-width:0;flex:1;border:1px solid #37364e;background:#0d0d17;border-radius:13px;padding:13px 14px;color:var(--text);outline:none;font-size:14px}.composer input:focus{border-color:#9c8cff}.composer input::placeholder{color:#77758e}.send{width:48px;flex:none;border:0;border-radius:13px;background:linear-gradient(135deg,#ed8ad0,#9386ff);color:#151322;font-weight:850;font-size:18px}.send:disabled{opacity:.35}.composer-hint{font-size:10px;color:#7f7c98;padding:0 13px 9px;background:#171724}
+.footer{font-size:10px;color:#79778f;text-align:center;line-height:1.55;padding:1px 6px 16px}.footer b{color:#aaa6c6;font-weight:600}.footer a{color:#b5a8ff}.hidden{display:none!important}
+@media(min-width:600px){.app{padding-left:24px;padding-right:24px}.hero{padding-top:34px}.suggestions{grid-template-columns:repeat(4,minmax(0,1fr))}.messages{max-height:49dvh}.chat{min-height:410px}.msg{font-size:14px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main class="app">
+<header class="topbar">
+ <div class="logo" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><path d="M20 5 23.8 15.8 35 20 23.8 24.2 20 35 16.1 24.2 5 20 16.1 15.8 20 5Z" stroke="white" stroke-width="2" stroke-linejoin="round"/><circle cx="20" cy="20" r="4" fill="white"/></svg></div>
+ <div class="brand"><h1>ARIELA</h1><p>AGENTE VIRTUAL · VERSIÓN 0.2</p></div>
+ <div class="status demo" id="statusBadge" role="status">● Demo local</div>
+</header>
+<section class="hero">
+ <div class="eyebrow">Tu espacio para crear</div>
+ <h2>Hola, soy <span>ARIELA.</span></h2>
+ <p>Un espacio para ordenar ideas, resolver dudas y dar el siguiente paso en tus proyectos. ¿Qué hacemos hoy?</p>
+</section>
+<div class="notice" id="modeNotice" role="status"><strong>Demostración local.</strong> Esta versión todavía no está conectada a una inteligencia artificial. Sus respuestas de ejemplo se generan en este dispositivo y no se envían a un servidor.</div>
+<section class="suggestions" aria-label="Ideas para empezar">
+ <button class="suggest" data-prompt="Ayúdame a organizar mi día."><span class="symbol">✦</span><span class="label">Organizar mi día</span></button>
+ <button class="suggest" data-prompt="Ayúdame a desarrollar una idea."><span class="symbol">◇</span><span class="label">Desarrollar una idea</span></button>
+ <button class="suggest" data-prompt="Quiero aprender algo nuevo. Ayúdame a empezar."><span class="symbol">⌁</span><span class="label">Aprender algo</span></button>
+ <button class="suggest" data-prompt="Ayúdame a avanzar con el proyecto ARIELA."><span class="symbol">✧</span><span class="label">Proyecto ARIELA</span></button>
+</section>
+<section class="chat" aria-label="Conversación con ARIELA">
+ <div class="chat-head"><div class="head-left"><span class="tiny-logo">✧</span><span>Conversación</span></div><div class="head-actions"><button class="accessBtn" id="accessBtn" type="button" aria-label="Configurar acceso privado">Acceso</button><button class="clear" id="clearBtn" type="button">Nuevo chat</button></div></div>
+ <div class="messages" id="messages" aria-live="polite"><div class="msg assistant" id="welcome">¡Hola! Soy ARIELA. 🌙
+
+Estoy en mi primera etapa de desarrollo. Puedes probar esta demostración escribiendo una idea o eligiendo una de las opciones de arriba.</div></div>
+ <div class="typing" id="typing">ARIELA está preparando una respuesta…</div>
+ <form class="composer" id="chatForm"><input id="messageInput" autocomplete="off" maxlength="1200" placeholder="Escribe tu mensaje…" aria-label="Escribe tu mensaje"><button class="send" id="sendBtn" type="submit" aria-label="Enviar mensaje">↑</button></form>
+ <div class="composer-hint">No escribas contraseñas, datos bancarios ni información personal sensible.</div>
+</section>
+<footer class="footer"><b>ARIELA AGENTE VIRTUAL</b> · Prototipo web v0.2<br><span id="footerStatus">Sin cuentas ni memoria persistente. El historial se conserva solo mientras esta página esté abierta.</span><br>La versión de IA real requiere configurar un proveedor y un servidor seguro.</footer>
+</main>
+<script>
+const messagesEl=document.getElementById('messages');
+const form=document.getElementById('chatForm');
+const input=document.getElementById('messageInput');
+const typing=document.getElementById('typing');
+const sendBtn=document.getElementById('sendBtn');
+const statusBadge=document.getElementById('statusBadge');
+const modeNotice=document.getElementById('modeNotice');
+const footerStatus=document.getElementById('footerStatus');
+const accessBtn=document.getElementById('accessBtn');
+let busy=false, appMode='demo', accessRequired=false, accessCode=sessionStorage.getItem('arielaAccessCode')||'';
+let history=[];
+
+function addMessage(text,who,extraClass=''){const node=document.createElement('div');node.className='msg '+who+(extraClass?' '+extraClass:'');node.textContent=text;messagesEl.appendChild(node);messagesEl.scrollTop=messagesEl.scrollHeight;return node;}
+function setMode(mode){
+ appMode=mode;
+ statusBadge.className='status';
+ if(mode==='connected'){
+  statusBadge.textContent='● IA preparada';
+  modeNotice.className='notice connected';
+  modeNotice.innerHTML='<strong>Conexión preparada.</strong> Los mensajes enviados se procesan mediante el proveedor de inteligencia artificial del servidor. No incluyas información sensible. Esta versión no tiene cuentas ni memoria persistente.';
+  footerStatus.textContent='La conversación permanece en esta sesión y se envía al proveedor de IA al responder. No hay historial persistente.';
+  accessBtn.classList.add('visible');
+ }else if(mode==='needs_setup'){
+  statusBadge.textContent='● Falta configurar';statusBadge.classList.add('setup');
+  modeNotice.className='notice setup';
+  modeNotice.innerHTML='<strong>Servidor aún sin configurar.</strong> Para activar la IA, el alojamiento necesita una clave de proveedor y un código de acceso privado. Por ahora, puedes probar las respuestas locales de demostración.';
+  accessBtn.classList.remove('visible');
+ }else{
+  statusBadge.textContent='● Demo local';statusBadge.classList.add('demo');
+  modeNotice.className='notice';
+  modeNotice.innerHTML='<strong>Demostración local.</strong> Esta versión todavía no está conectada a una inteligencia artificial. Sus respuestas de ejemplo se generan en este dispositivo y no se envían a un servidor.';
+  accessBtn.classList.remove('visible');
+  footerStatus.textContent='Sin cuentas ni memoria persistente. El historial se conserva solo mientras esta página esté abierta.';
+ }
+}
+async function checkHealth(){
+ try{
+  const response=await fetch('/api/health',{cache:'no-store'});
+  if(!response.ok)throw new Error('Servidor no disponible');
+  const data=await response.json();
+  accessRequired=Boolean(data.accessRequired);
+  setMode(data.mode||'demo');
+ }catch{
+  // Esto también ocurre al abrir el HTML descargado como archivo local.
+  accessRequired=false;setMode('demo');
+ }
+}
+function demoReply(text){const t=text.toLowerCase();
+ if(/hola|buenos días|buenas|hey|qué tal/.test(t)) return '¡Hola! ✨ Qué gusto leerte. Esta es una respuesta de ejemplo de mi prototipo. Cuando se configure el motor de IA, podré mantener una conversación mucho más flexible.';
+ if(/organizar|día|tareas|planificar|agenda/.test(t)) return 'Vamos paso a paso. Para organizar tu día, prueba este esquema:\n\n1. Elige una tarea importante.\n2. Anota dos tareas pequeñas.\n3. Reserva un descanso.\n4. Empieza por algo que puedas terminar en 10 minutos.\n\nEsta demo no puede conocer tus horarios reales todavía.';
+ if(/idea|crear|creativ|inventar/.test(t)) return 'Podemos convertir una idea en algo concreto. ✦\n\n• ¿Qué quieres lograr?\n• ¿Para quién sería?\n• ¿Cuál es la versión más pequeña que podemos probar?\n\nEsta respuesta es predefinida; la IA real todavía está pendiente de conectarse.';
+ if(/ariela|proyecto|aplicación|app|construir/.test(t)) return 'El siguiente objetivo es conectar esta interfaz a un modelo de IA mediante un servicio seguro. Después probaremos sus respuestas, guardaremos las decisiones del proyecto y añadiremos funciones por etapas.\n\nEstado comprobable: interfaz web creada. Conexión de IA, cuentas y publicación todavía pendientes.';
+ if(/aprender|estudiar|explica|enseña/.test(t)) return 'Aprender algo nuevo es más fácil si lo dividimos en partes pequeñas. Dime el tema, el nivel desde el que empiezas y qué te gustaría poder hacer al final.\n\nNota: esta versión solo responde con ejemplos preparados; no hay una IA conectada.';
+ if(/gracias/.test(t)) return '¡De nada! 💜 Esta demo nos permite probar la apariencia y el flujo del chat. El siguiente paso es configurar un motor de IA real.';
+ return 'Gracias por contármelo. En esta versión todavía no tengo un modelo de IA conectado, así que no puedo analizar el mensaje de forma inteligente. Ya podemos probar la interfaz; la conexión real está preparada en el código, pero necesita configurarse en un servidor.';
+}
+function askForAccessCode(){
+ const code=window.prompt('Este prototipo está protegido. Escribe el código privado configurado en el servidor. No escribas aquí una clave de API.');
+ if(code&&code.trim()){accessCode=code.trim();sessionStorage.setItem('arielaAccessCode',accessCode);return true;}
+ return false;
+}
+async function requestAI(){
+ const response=await fetch('/api/chat',{
+  method:'POST',headers:{'Content-Type':'application/json','X-ARIELA-ACCESS-CODE':accessCode},
+  body:JSON.stringify({messages:history.slice(-16)})
+ });
+ let data={};try{data=await response.json();}catch{}
+ if(!response.ok){
+  if(response.status===401){accessCode='';sessionStorage.removeItem('arielaAccessCode');}
+  throw new Error(data.message||'No pude obtener una respuesta de la IA.');
+ }
+ return data.answer;
+}
+async function send(text){
+ const value=(text||'').trim();if(!value||busy)return;
+ if(appMode==='connected'&&accessRequired&&!accessCode){if(!askForAccessCode())return;}
+ addMessage(value,'user');history.push({role:'user',content:value});input.value='';busy=true;sendBtn.disabled=true;typing.style.display='block';messagesEl.scrollTop=messagesEl.scrollHeight;
+ try{
+  let answer;
+  if(appMode==='connected'){
+   try{answer=await requestAI();}
+   catch(error){addMessage(error.message,'assistant','noticeMsg');history.pop();return;}
+  }else{
+   await new Promise(resolve=>setTimeout(resolve,280));answer=demoReply(value);
+  }
+  addMessage(answer,'assistant');history.push({role:'assistant',content:answer});
+ }catch{addMessage('Ocurrió un error inesperado. Inténtalo de nuevo.','assistant','noticeMsg');}
+ finally{typing.style.display='none';busy=false;sendBtn.disabled=false;input.focus();}
+}
+form.addEventListener('submit',event=>{event.preventDefault();send(input.value);});
+document.querySelectorAll('[data-prompt]').forEach(button=>button.addEventListener('click',()=>send(button.dataset.prompt)));
+document.getElementById('clearBtn').addEventListener('click',()=>{history=[];messagesEl.replaceChildren();addMessage('¡Chat nuevo! 🌙 ¿Qué te gustaría hacer hoy?','assistant');input.focus();});
+accessBtn.addEventListener('click',()=>{accessCode='';sessionStorage.removeItem('arielaAccessCode');askForAccessCode();});
+checkHealth();
+if('serviceWorker' in navigator && (location.protocol==='https:' || location.hostname==='localhost')){
+ window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));
+}
+</script>
+</body>
+</html>

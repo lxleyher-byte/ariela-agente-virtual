@@ -1,0 +1,14 @@
+ARIELA AGENTE VIRTUAL · PROTOTIPO v0.2
+
+Incluye la aplicación web, un servidor opcional para conectar IA y guía en español.
+
+PRUEBA SIN CONFIGURAR IA:
+- Abre index.html en el navegador para ver la interfaz y usar las respuestas de demostración.
+- En modo archivo local, la app no puede conectarse al servidor: esto es normal.
+
+PARA USAR IA REAL:
+- Revisa README.md.
+- Se necesita alojar el servidor y configurar una clave de proveedor + un código privado en variables de entorno.
+- Nunca pongas la clave de API en index.html ni la compartas en chats.
+
+La app todavía no tiene cuentas, memoria persistente ni autenticación individual, así que no debe abrirse al público como producto final.
