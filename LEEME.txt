@@ -1,14 +1,14 @@
-ARIELA AGENTE VIRTUAL · PROTOTIPO v0.2
+ARIELA AGENTE VIRTUAL · PROTOTIPO 0.3.0
 
-Incluye la aplicación web, un servidor opcional para conectar IA y guía en español.
+EMPEZAR
+1. Descomprime el paquete.
+2. Revisa README.md y ESTADO_Y_PRUEBAS.md.
+3. Para ejecutar en una computadora con Node.js 20+: npm start
+4. Abre http://localhost:3000.
+5. Para las comprobaciones automáticas: npm run check y npm test.
 
-PRUEBA SIN CONFIGURAR IA:
-- Abre index.html en el navegador para ver la interfaz y usar las respuestas de demostración.
-- En modo archivo local, la app no puede conectarse al servidor: esto es normal.
+IA REAL
+La IA real necesita configurar GROQ_API_KEY y ARIELA_ACCESS_CODE en la configuración privada del servidor de alojamiento. Nunca guardes valores reales en GitHub ni en index.html. En modo demo, las respuestas son ejemplos preparados.
 
-PARA USAR IA REAL:
-- Revisa README.md.
-- Se necesita alojar el servidor y configurar una clave de proveedor + un código privado en variables de entorno.
-- Nunca pongas la clave de API en index.html ni la compartas en chats.
-
-La app todavía no tiene cuentas, memoria persistente ni autenticación individual, así que no debe abrirse al público como producto final.
+IMPORTANTE
+Esta versión no tiene cuentas individuales ni memoria permanente, ni voz, avatar animado, pagos o publicación automatizada. Es un prototipo, no un producto final de acceso público.

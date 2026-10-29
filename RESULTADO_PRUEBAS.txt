@@ -1,0 +1,29 @@
+ARIELA AGENTE VIRTUAL · v0.3.0
+Fecha: 28 de octubre de 2026
+Entorno local de comprobación: Node.js v22.16.0
+
+1) npm run check
+Resultado: APROBADO (código de salida 0).
+Comprobó la sintaxis de server.js, sw.js, smoke-test.mjs y access-test.mjs.
+
+2) npm test
+Resultado: APROBADO.
+- Pruebas de humo: 9/9 aprobadas.
+- Pruebas de acceso/validación: 6/6 aprobadas.
+- Total: 15/15 comprobaciones automatizadas aprobadas.
+
+Alcance de la prueba:
+Se inició el servidor de forma local, se verificaron estado, archivos estáticos permitidos, manifiesto, service worker,
+rechazo de solicitudes de otro origen, modo demo, código de acceso y validación de entrada. El test de acceso usa
+credenciales ficticias y solicitudes inválidas para no llamar al proveedor real.
+
+No probado en este entorno:
+- La clave real de Groq, la disponibilidad del modelo y la respuesta real del proveedor.
+- El despliegue de Render y la permanencia de las variables privadas en ese servicio.
+- La apariencia y el comportamiento en el teléfono Android objetivo.
+- La instalación real como PWA y su actualización entre versiones.
+- Una auditoría de seguridad de producción.
+
+Conclusión de estado:
+El paquete pasa las pruebas automáticas incluidas, pero el prototipo global sigue marcado como IMPLEMENTADO, NO VALIDADO
+hasta completar las pruebas manuales y una prueba de integración con variables privadas reales en el alojamiento.
